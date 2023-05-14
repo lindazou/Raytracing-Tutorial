@@ -17,6 +17,7 @@ color ray_color(const ray &r, const hittable &world) {
 	return (1.0 - t) * color(1.0, 1.0, 1.0) + t * color(0.5, 0.7, 1.0);
 }
 
+/*
 double hit_sphere(const point3& center, double radius, const ray& r) {
 	vec3 oc = r.origin() - center;
 	auto a = r.direction().length_squared();
@@ -42,6 +43,7 @@ color ray_color(const ray& r) {
 	t = 0.5 * (unit_direction.y() + 1.0);
 	return (1.0 - t) * color(1.0, 1.0, 1.0) + t * color(0.5, 0.7, 1.0);
 }
+*/
 
 int main() {
 	// Image
@@ -73,7 +75,7 @@ int main() {
 		for (int i = 0; i < image_width; ++i) {
 			auto u = double(i) / (image_width - 1);
 			auto v = double(j) / (image_height - 1);
-			ray r(origin, lower_left_corner + u * horizontal + v * vertical - origin);
+			ray r(origin, lower_left_corner + u * horizontal + v * vertical);
 			color pixel_color = ray_color(r, world);
 			write_color(std::cout, pixel_color);
 		}
